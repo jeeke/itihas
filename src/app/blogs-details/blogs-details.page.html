@@ -1,0 +1,111 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Blog Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="container-fluid">
+    <div class="col-md-10 offset-md-1">
+      <div style="text-align: end;" *ngIf="type=='admin'">
+      <ion-button  type="submit" color="primary"  (click)="redirectEditBlog()">Edit Blog</ion-button>
+    </div>
+    
+    
+    <div class="card mb-3">
+      <img class="card-img-top" src="{{blog.image}}" alt="Responsive image">
+      <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        <footer class="blockquote-footer">Author is <cite title="Source Title">{{blog.author?blog.author:"Null"}}</cite></footer>
+        <span class="badge badge-warning" style="margin-right:4px ;" *ngFor="let tag of blog.tags" > <a >{{tag.title}}</a></span> &nbsp;
+        <!-- <p class="card-text">{{blog.body |csPipe}}</p> -->
+        <div class="card-text" innerHtml="{{blog.body}}"></div>
+        <h2 class="text-center">Comment Section</h2>
+        <div class="card cards">
+          <div class="card-header bg-primary msg_head">
+            <div class="d-flex bd-highlight">
+              <div class="img_cont">
+                <img
+                  src="assets/images/user.jpg"
+                  class="rounded-circle user_img"
+                />
+                <span class="online_icon"></span>
+              </div>
+              <div class="user_info">   
+                <span class="text-black">Chat history</span>
+                <p class="text-black"> Messages</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body msg_card_body">
+            <div *ngFor="let data of comments">
+              <div
+                class="d-flex justify-content-start mb-4"
+              >
+                <div class="img_cont_msg">
+                  <img
+                    src="assets/images/user.jpg"
+                    class="rounded-circle user_img_msg"
+                  />
+                </div>
+                <div
+                  class="msg_cotainer"
+                >
+                  <!-- Hi, how are you samim? -->
+                  <div>
+                  <small><i> {{data.name}} </i></small>
+                  </div>
+                  <div>
+                    {{ data.body }} 
+                  </div>
+                  <!-- <span class="msg_time">8:40 AM, Today</span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <form #myMessage="ngForm" (ngSubmit)="myMessage.valid && onSubmit(myMessage)">
+            <div class="form-group col-md-12">
+              <textarea class="form-control" placeholder="Comment here ...." cols="10" rows="5" #comment_body="ngModel" [(ngModel)]="comment.comment_body" name="comment_body" [ngClass]="{'invalid-textbox' :myMessage.submitted && !comment_body.valid }"  required>
+              </textarea>
+                <div *ngIf="myMessage.submitted && !comment_body.valid">
+                <label class="validation-message">This field is required.</label>
+              </div>
+            </div>
+          <div class="form-group offset-md-4 col-md-3">
+            <ion-button type="submit" color="danger">Send Message</ion-button>
+          </div>
+          </form>
+      </div>
+    </div>
+   
+
+
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+  <!-- <ion-footer class="ion-f">   
+    <ion-toolbar>
+      <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+      </div>
+        <div class="ion-text-center">
+        Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+    </ion-toolbar>
+  </ion-footer> -->
+</ion-content>
+

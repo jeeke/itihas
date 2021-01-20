@@ -1,0 +1,28 @@
+.ion-f{
+    --ion-background-color:#3171e0;
+    --ion-text-color:white;
+  }
+
+  .alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .success{
+    padding: 20px;
+    background-color:#249424; /* Green */
+    color: white;
+    margin-bottom: 15px;
+  }
+  input[type=text].invalid-textbox,input[type=password].invalid-textbox,
+    ion-tags-input.invalid-textbox,  ckeditor.invalid-textbox{
+    border-bottom: 2px solid #ed5558;
+    }
+ 
+    
+    label.validation-message{
+      color:#ed5558;
+    }
+ 

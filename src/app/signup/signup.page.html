@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="bg-color">
+  <ion-card class="mrg-1" >
+    <ion-card-header>
+        <ion-avatar>
+          <img  src="assets/images/user.jpg">
+        </ion-avatar>
+      <!-- <ion-card-title>Login</ion-card-title> -->
+      <!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+    </ion-card-header>
+  <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+    <ion-item lines="full">
+      <ion-label position="floating">      
+        Name</ion-label>
+      <ion-input type="text" #name="ngModel" [(ngModel)]="user.name" name="name" 
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }" ></ion-input>
+      <div *ngIf="signUpForm.submitted && !name.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input type="tel" #phone="ngModel" [(ngModel)]="user.phone" name="phone" 
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !phone.valid }" ></ion-input>
+      <div *ngIf="signUpForm.submitted && !phone.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" #email="ngModel" [(ngModel)]="user.email" name="email" 
+      required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }" ></ion-input>
+      <div *ngIf="signUpForm.submitted && email.errors">
+        <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+        <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+      </div>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" 
+      required   [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }" ></ion-input>
+      <div *ngIf="signUpForm.submitted && password.errors">
+        <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+        <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+      </div>
+    </ion-item>
+    <ion-item lines="full">   
+      <ion-label position="floating">Country</ion-label>
+      <ion-input type="text" #country="ngModel" [(ngModel)]="user.country" name="country" 
+      required   [ngClass]="{'invalid-textbox' :signUpForm.submitted && !country.valid }" ></ion-input>
+      <div *ngIf="signUpForm.submitted && !country.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">City</ion-label>
+      <ion-input type="text" #city="ngModel" [(ngModel)]="user.city" name="city" 
+      required   [ngClass]="{'invalid-textbox' :signUpForm.submitted && !city.valid }" ></ion-input>
+      <div *ngIf="signUpForm.submitted && !city.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  </ion-card>
+  <!-- <ion-footer class="ion-f">
+    <ion-toolbar>
+      <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+      </div>
+        <div class="ion-text-center">
+        Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+    </ion-toolbar>
+  </ion-footer> -->
+</ion-content>

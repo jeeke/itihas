@@ -1,0 +1,51 @@
+.label-sp{
+    padding-left: 5px;
+}
+
+    .bg-color{
+        --ion-background-color:rgb(202, 235, 248);
+    }
+    .ion-f{
+        --ion-background-color:#3171e0;
+        --ion-text-color:white;
+      }
+      ion-avatar{
+        margin: 0px 0px 0px 47%;
+      }
+      input[type=text].invalid-textbox,input[type=password].invalid-textbox{
+        border-bottom: 2px solid #ed5558;
+        }
+        
+        label.validation-message{
+          color:#ed5558;
+        }
+        .alert {
+          padding: 20px;
+          background-color: #f44336; /* Red */
+          color: white;
+          margin-bottom: 15px;
+        }
+        
+        .success{
+          padding: 20px;
+          background-color:#249424; /* Green */
+          color: white;
+          margin-bottom: 15px;
+        }
+
+        // this is mobile view
+@media only screen and (max-width: 768px) {
+  .mrg-1{
+    margin: 5px;
+    box-shadow: none;
+    --ion-background-color:white;
+    }
+  } 
+  // this is web view
+  @media only screen and (min-width: 768px) {
+    .mrg-1{
+      margin: 2% 18% 2% 18%;
+      box-shadow: 0px 1px 5px 2px;
+      --ion-background-color:white;
+      }
+  }

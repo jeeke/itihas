@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+    <ion-card class="mrg-1" >
+      <ion-card-header>
+        <ion-avatar>
+          <img  src="assets/images/user.jpg">
+        </ion-avatar>
+                <!-- <ion-card-subtitle>Login</ion-card-subtitle> -->
+                     <!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+      </ion-card-header>
+      <form #loginForm="ngForm" (ngSubmit)="loginForm.valid && onSubmit(loginForm)">
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" #email="ngModel" [(ngModel)]="login.email" name="email" 
+          required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :loginForm.submitted && !email.valid }" ></ion-input>
+          <div *ngIf="loginForm.submitted && email.errors">
+            <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+            <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+          </div>
+        </ion-item>
+     
+        <ion-item lines="full">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" #password="ngModel" [(ngModel)]="login.password" name="password" 
+          required   [ngClass]="{'invalid-textbox' :loginForm.submitted && !password.valid }" ></ion-input>
+          <div *ngIf="loginForm.submitted && password.errors">
+            <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+            <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+          </div>
+        </ion-item>
+      
+        <ion-row size="3" class="ion-text-center">
+          <ion-col >
+            <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+            <a [routerLink]="['/forget-pass']" class="small-text">Forgot Password?</a>
+          </ion-col>
+        </ion-row>
+      </form> 
+      </ion-card>
+     
+
+
+</ion-content>
+<!-- <ion-footer class="ion-f">
+  <ion-toolbar>
+    <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+    </div>
+      <div class="ion-text-center">
+      Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+  </ion-toolbar>
+</ion-footer> -->

@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Blogs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <!-- <h2>Blogs</h2> -->
+    </div>
+    <div class="col-md-6 text-right" *ngIf="type=='admin'">
+<ion-button  type="submit" color="primary" (click)="redirectCreateBlog()">Create Blog</ion-button>
+    </div>
+  </div> 
+  <div class="container-fluid">
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col-md-6 mb-4" *ngFor="let data of blogs"> 
+    <!-- add only col to col-md-6 -->
+    <div class="card" (click)="openDetailsPage(data)">
+      <img src="{{data.image}}" class="img-style">
+      <div class="card-body">
+        <h5 class="card-title">{{data.title}}</h5>
+        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+        <!-- <div ><ion-badge color="warning" style="color: white;" *ngFor="let tag of data.tags"> <i> {{tag.title}}</i></ion-badge></div>     -->
+        <div>
+        <span class="badge badge-warning" style="margin-right:4px ;" *ngFor="let tag of data.tags" > <a >{{tag.title}}</a></span> &nbsp;
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+
+ 
+  
+  <!-- <ion-footer class="ion-f">
+    <ion-toolbar>
+      <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+      </div>
+        <div class="ion-text-center">
+        Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+    </ion-toolbar>
+  </ion-footer> -->
+  
+</ion-content>

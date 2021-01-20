@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Books</ion-title>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content >
+  <div class="mobile">  
+    <!--  -->
+    <div class="row mobile">
+      <div class=" col-md-12 mb-4" *ngFor="let data of bookList">
+    <div class="card" (click)="opentNewTab(data.link)">   
+      <!-- style="width: 18rem;" web-->
+      <img src="{{data.icon}}" class="card-img-top" alt="{{data.title}}">
+      <div class="card-body text-white bg-info text-center" >
+        <h4>{{data.title}}</h4>
+        <ion-badge color="warning" style="color: white;"> <i> {{data.author}}</i></ion-badge>
+        <!-- <input type="button" class="btn btn-warning" value="Check Here" (click)="redirectCourceList(data)"> -->
+      </div>
+    </div>      
+    </div>
+      </div>
+    <!--  -->  
+  </div>
+  
+  <ion-row class="web">      
+    <ion-col *ngFor="let data of bookList" size="2"  (click)="opentNewTab(data.link)"  class="card-background-page">
+  <ion-card>
+    <ion-card-content>
+      <img src="{{data.icon}}" class="img-style">
+        </ion-card-content>
+      <!-- <ion-card-footer> -->
+      <div > {{data.title}}</div>
+        <div class="box"> 
+        <div ><ion-badge color="warning" style="color: white;"> <i> {{data.author}}</i></ion-badge></div>    
+        </div>
+      <!-- </ion-card-footer> -->
+  </ion-card>
+</ion-col>
+</ion-row> 
+</ion-content>
+<!-- <ion-footer class="ion-f">
+  <ion-toolbar>
+    <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+    </div>
+      <div class="ion-text-center">
+      Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+  </ion-toolbar>
+</ion-footer> -->

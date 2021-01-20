@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create Blog</ion-title>
+  </ion-toolbar>
+</ion-header>    
+
+<ion-content>
+  <div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container" class="text-center">
+        <h1 class="display-4" >Create new blogs</h1>
+      </div>
+    </div>
+    <div class="success" *ngIf="showSucessMessage">
+     {{message}}
+    </div>
+    
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+      {{serverErrorMessages}}
+    </div>
+<form #myBlogs="ngForm" (ngSubmit)="newblog.tags.length>0 && newblog.body!='' && myBlogs.valid && onSubmit(myBlogs)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Title</label>
+      <input type="text" class="form-control" #title="ngModel" [(ngModel)]="newblog.title" name="title" [ngClass]="{'invalid-textbox' :myBlogs.submitted && !title.valid }"  required>
+      <div *ngIf="myBlogs.submitted && !title.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Image</label>
+      <input type="text"  name="image" 
+      required  class="form-control" #image="ngModel" [(ngModel)]="newblog.image"  [ngClass]="{'invalid-textbox' :myBlogs.submitted && !image.valid }" 
+      >
+      <div *ngIf="myBlogs.submitted && !image.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </div>   
+  </div>
+  <div class="form-group">
+    <label for="inputEmail4">Author</label>
+    <input type="text" class="form-control" #author="ngModel" [(ngModel)]="newblog.author" name="author" [ngClass]="{'invalid-textbox' :myBlogs.submitted && !author.valid }"  required>
+    <div *ngIf="myBlogs.submitted && !author.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Tags</label>
+    <ion-tags-input class="form-control" [ngModelOptions]="{standalone: true}"   #tags="ngModel" [(ngModel)]="newblog.tags" 
+      (onChange)="onChange($event)" [once]="'true'" [mode]="'md'" [placeholder]="'add tag'"></ion-tags-input>
+    <!-- <div *ngIf="test(tags)">
+      <label class="validation-message">This field is required.</label>
+    </div> -->
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Body</label>
+    <ckeditor [editor]="Editor" #body="ngModel"   [(ngModel)]="newblog.body" [ngModelOptions]="{standalone: true}" (ready)="onReady($event)"></ckeditor>
+    <!-- <div *ngIf="newblog.tags.length>0 && newblog.body!=''">
+      <label class="validation-message">This field is required.</label>
+    </div> -->
+  </div>
+  <div class="form-group offset-md-4 col-md-3">
+    <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+  </div>
+  </form>
+</div>          
+<!-- <ion-footer class="ion-f">
+  <ion-toolbar>
+    <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+    </div>
+      <div class="ion-text-center">
+      Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+  </ion-toolbar>
+</ion-footer> -->
+</ion-content>     
+

@@ -1,0 +1,122 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Contact Us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="ion-text-center">
+    <!-- <h4>Contact Us</h4> -->
+    <ion-avatar>
+      <img  src="assets/images/forms.png">
+    </ion-avatar>
+  </div>
+ 
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <div class="success" *ngIf="showSucessMessage">
+          Saved successfully
+        </div>
+        
+        <!-- Error message -->
+        <div class="alert" *ngIf="serverErrorMessages">
+          {{serverErrorMessages}}
+        </div>
+        <!-- <ion-card-subtitle class="ion-text-center">Contact Form</ion-card-subtitle> -->
+      </ion-card-header>
+    
+      <ion-card-content>
+        <form #contactUsForm="ngForm" (ngSubmit)="contactUsForm.valid && onSubmit(contactUsForm)">
+          <ion-item lines="full">
+            <ion-label position="floating">Name</ion-label>
+              <ion-input type="text" #name="ngModel" [(ngModel)]="contact.name" name="name" 
+              required  [ngClass]="{'invalid-textbox' :contactUsForm.submitted && !name.valid }"> </ion-input>
+              <div *ngIf="contactUsForm.submitted && !name.valid">
+                <label class="validation-message">This field is required.</label>
+              </div>
+          </ion-item>
+      
+          <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" #email="ngModel" [(ngModel)]="contact.email" name="email" 
+          required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :contactUsForm.submitted && !email.valid }" ></ion-input>
+          <div *ngIf="contactUsForm.submitted && email.errors">
+            <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+            <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+          </div>
+          </ion-item>
+      
+          <ion-item lines="full">
+            <ion-label position="floating">Mobile</ion-label>
+            <ion-input type="text" #phone="ngModel" [(ngModel)]="contact.phone" name="phone"
+            required  [ngClass]="{'invalid-textbox' :contactUsForm.submitted && !phone.valid }"> </ion-input>
+            <div *ngIf="contactUsForm.submitted && !phone.valid">
+              <label class="validation-message">This field is required.</label>
+            </div>
+          
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">Subject</ion-label>
+            <ion-input type="text" #subject="ngModel" [(ngModel)]="contact.subject" name="subject" 
+            required  [ngClass]="{'invalid-textbox' :contactUsForm.submitted && !subject.valid }"> </ion-input>
+            <div *ngIf="contactUsForm.submitted && !subject.valid">
+              <label class="validation-message">This field is required.</label>
+            </div>
+                    </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">Body</ion-label>
+            <ion-textarea type="text" #body="ngModel" [(ngModel)]="contact.body" name="body" 
+            required  [ngClass]="{'invalid-textbox' :contactUsForm.submitted && !body.valid }"> </ion-textarea>
+            <div *ngIf="contactUsForm.submitted && !body.valid">
+              <label class="validation-message">This field is required.</label>
+            </div>
+          </ion-item>
+         
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <!-- <div>
+    <ion-card>
+      <ion-card-content>
+        <p>For any assistance write us on
+           <a href="bharatsir@hotmail.com" target="_top"
+                 class="frontend-enhanced-title">bharatsir@hotmail.com</a>  or contact us on <strong>+91 9820408217</strong></p>
+
+
+         <p> Alternate Payment options:</p>
+         <p> 1. Paytm / UPI-BHIM / Google Pay / PhonePe Make a payment using any of the above towards my mobile number +919820408217.
+        </p>
+         <p> 2. Bank transfer towards this account:</p>
+         <p> A/c Name: BHARAT ACADEMY. <strong> A/c No: 003805007099. IFSC: ICIC0000038. </strong>Bank: ICICI. A/c Type: Current Account.
+          International Students can make the payment on this link:
+               <a href="https://www.paypal.me/BharatAcharya" target="_top"
+                 class="frontend-enhanced-title">https://www.paypal.me/BharatAcharya</a></p>
+
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+
+  <!-- <ion-footer class="ion-f">
+    <ion-toolbar>
+      <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+      </div>
+        <div class="ion-text-center">
+        Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+    </ion-toolbar>
+  </ion-footer> -->
+
+</ion-content>
+

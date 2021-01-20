@@ -1,0 +1,99 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="menu-a" ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Course List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="show=='courceList'" class="container-fluid">
+    <div class="card">   
+      <div class="card-header">
+        <div class="row">           
+          <div class="col-md-6 text-left">
+<h4>{{courseList.title}}</h4>
+          </div>
+          <div class="col-md-6 text-right">   
+            <button [disabled]="courseList.is_enrolled" (click)="subscribeCourse(courseList.id)" class="btn btn-danger ion-text-center" >{{courseList.is_enrolled === true ? "Enrolled" : "Enroll Now"}}</button>
+          </div>
+        </div>     
+      </div>
+        <!-- <div class="text-center">     
+        </div> -->   
+      <div class="card-body">
+        <img src="{{courseList.image}}" alt="no showing">       
+      </div>
+    </div>
+
+
+<h2 class="ion-text-center">Videos</h2>
+    <div class="row">
+      <div class="col-md-6" *ngFor="let data of courseList.videos">
+  <div class="card mb-3"  >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{data.image}}" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">   
+        <div class="card-body">
+          <h5 class="card-title">{{data.title}}</h5>
+          <p class="card-text">{{courseList.des}}</p>
+          <p class="card-text"><small class="text-muted">Duration: {{data.duration}}</small></p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <a *ngIf="data.video_url" (click)="openPremiumVideo('premiumVideo',data.video_url, data.title, data.image)" class="btn btn-warning ion-text-center" >Play</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="" *ngIf="show=='premiumVideo'">
+  <div class="card">
+    <div class="card-header">
+        <div class="row">
+          <div class="col-md-6 text-left">
+<h4>{{title}}</h4>
+          </div>
+          <div class="col-md-6 text-right">
+            <a (click)="backLIst('courceList')" class="btn btn-danger ion-text-center" >Back</a>
+          </div>
+        </div>
+      </div>    
+    <div class="card-body">
+      <!-- <video width="320" height="240" controls>
+        <source src="{{premiumVideoUrlLink}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> -->
+      <div  plyr plyrTitle="Custom video" [plyrPlaysInline]="true" [plyrCrossOrigin]="true"
+      [plyrPoster]="poster" [plyrSources]="videoSources" [plyrTracks]="tracks" (plyrInit)="player = $event"
+      (plyrPlay)="played($event)"></div>
+      <!-- <iframe class="e2e-iframe-trusted-src" width="640" height="500" src="https://www.youtube.com/watch?v=8rz2HCcHX_8"></iframe> -->
+
+      <!-- <iframe width="1500" height="500"
+        src="{{premiumVideoUrlLink}}">    
+      </iframe>     -->
+    </div>
+  </div>
+</div>     
+
+
+
+
+
+
+
+
+  <!-- <ion-footer class="ion-f">
+    <ion-toolbar>
+      <div class="ion-text-center">Terms and condition | Privacy Policy | Refund Policy
+      </div>
+        <div class="ion-text-center">
+        Copyright © Bharat Acharya Education 2020 All rights reserved.</div>
+    </ion-toolbar>
+  </ion-footer> -->
+</ion-content>
